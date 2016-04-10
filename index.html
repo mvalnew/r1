@@ -1,0 +1,132 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>GIT</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<table>
+  <tr>
+    <td>
+        <h4>Содержание:</h4>
+        <li><a href="#name">Имя пользователя и e-mail</a>
+        <li><a href="#config">Проверка настроек</a>
+        <li><a href="#help">Получение справки</a>
+        <li><a href="#init">Инициализация репозитария</a>
+        <li><a href="#clone">Клонирование существующего репозитария</a>
+        <li><a href="#status">Проверка состояния файлов</a>
+        <li><a href="#add">Начало слежения за новыми файлами и принятие изменений</a>
+        <li><a href="#ignore">Игнорирование файлов</a>
+        <li><a href="#commit">Фиксация изменений</a>
+        <li><a href="#remove">Удаление файлов</a>
+        <li><a href="#amend">Дополнение фиксации</a>
+        <li><a href="#reset">Отмена индексирования</a>
+        <li><a href="#checkout">Отмена изменений в файле</a>
+        <li><a href="#remote">Отображение удаленных репозиториев</a>
+        <li><a href="#remote_add">Добавление удаленных репозиториев</a>
+        <li><a href="#fetch">Скачивание из удаленных репозиториев</a>
+        <li><a href="#push">Отправка данных в удаленный репозитарий</a>
+    </td>
+    <td>
+        <h3><a name="name">Имя пользователя и e-mail</a></h3>
+        используются для коммитов<br>
+        добавляем в глобальные настройки:
+        <ul>
+            <li>git config --global user.name "myname"
+            <li>git config --global user.email myemail@mymail.com
+        </ul>
+        если для конкретного проекта требуются другие имя и e-mail, то надо устеновить
+        их без --global
+        
+        <h3><a name="config">Проверка настроек</a></h3>
+        <ul>
+            <li>git config --list <span class="note">- все настойки</span>
+            <li>git config user.name <span class="note">- конкретная настройка</span>
+        </ul>
+    
+        <h3><a name="help">Получение справки</a></h3>
+        <ul>
+            <li>git help &lt;команда&gt;
+        </ul>
+    
+        <h3><a name="init">Инициализация репозитария</a></h3>
+        надо перейти в требуюмую папку и ввести:
+        <ul>
+            <li>git init
+        </ul>
+        
+        <h3><a name="clone">Клонирование существующего репозитария</a></h3>
+        <ul>
+            <li>git clone https://github.com/mvalnew/r1 myFolder
+        </ul>
+
+        <h3><a name="status">Проверка состояния файлов</a></h3>
+        <ul>
+            <li>git status
+            <li>git status -s <span class="note"> - сокращенный вывод</span>
+        </ul>
+
+        <h3><a name="add">Начало слежения за новыми файлами и принятие изменений</a></h3>
+        <ul>
+            <li>git add myFile.txt
+        </ul>
+        
+        <h3><a name="ignore">Игнорирование файлов</a></h3>
+        Необходимо создать файл .gitignore и поместить в рабочую область. Список паттернов:
+        <ul>
+            <li>*.[oa] <span class="note"> - с расширением .o или .a</span>
+            <li>*~ <span class="note"> - заканчиваются на ~</span>
+        </ul>
+
+        <h3><a name="commit">Фиксация изменений</a></h3>
+        <ul>
+            <li>git commit -m "my comment"
+        </ul>
+        
+        <h3><a name="remove">Удаление файлов</a></h3>
+        <ul>
+            <li>git rm myFile.txt
+        </ul>
+        
+        <h3><a name="amend">Дополнение последней фиксации</a></h3>
+        <ul>
+            <li>git commit --amend
+        </ul>
+        
+        <h3><a name="reset">Отмена индексирования</a></h3>
+        <ul>
+            <li>git reset HEAD myFile.txt
+        </ul>
+        
+        <h3><a name="checkout">Отмена изменений в файле</a></h3>
+        <ul>
+            <li>git checkout -- myFile.txt
+        </ul>
+        
+        <h3><a name="remote">Отображение удаленных репозитариев</a></h3>
+        <ul>
+            <li>git remote -v
+        </ul>
+        
+        <h3><a name="remote_add">Добавление удаленных репозиториев</a></h3>
+        <ul>
+            <li>git remote add myRepo https://github.com/mvalnew/r1
+        </ul>
+        
+        <h3><a name="fetch">Скачивание из удаленных репозиториев</a></h3>
+        <ul>
+            <li>git fetch myRepo
+        </ul>
+        
+       <h3><a name="push">Отправка данных в удаленный репозитарий</a></h3>
+        <ul>
+            <li>git push myRepo master
+        </ul>
+        
+        <p><a href="#name">В начало</a></p>
+    </td>
+  </tr>
+</table>
+</body>
+</html>
