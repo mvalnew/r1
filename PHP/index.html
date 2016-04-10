@@ -1,0 +1,104 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>PHP</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<table>
+  <tr>
+    <td>
+        <h4>Содержание:</h4>
+        <li><a href="#example">Пример</a>
+        <li><a href="#var_form">Доступ к переменным формы</a>
+        <li><a href="#concat">Конкатенация</a>
+        <li><a href="#type">Типы</a>
+        <li><a href="#type_convert">Приведение типов</a>
+        <li><a href="#var_var">Переменные переменных</a>
+        <li><a href="#const">Константы</a>
+        <li><a href="#"></a>
+        <li><a href="#"></a>
+        <li><a href="#"></a>
+        <li><a href="#"></a>
+        <li><a href="#"></a>
+        <li><a href="#"></a>
+    </td>
+    <td>
+        <h3><a name="example">Пример:</a></h3>
+        <pre>
+&lt;html&gt;
+&lt;body&gt;
+&lt;table border="0" cellpadding="3"&gt;
+&lt;tr&gt;
+  &lt;td bgcolor = "#CCCCCC" align = "center"&gt;Расстояние&lt;/td&gt;
+  &lt;td bgcolor = "#CCCCCC" align = "center"&gt;Стоимость&lt;/td&gt;
+&lt;/tr&gt;
+        <strong>
+&lt;?php
+
+$distance = 50;
+while ($distance &lt;= 250) {
+  echo "&lt;tr&gt;
+    &lt;td align=\"right\"&gt;".$distance."&lt;/td&gt;
+    &lt;td align=\"right\"&gt;".($distance / 10)."&lt;/td&gt;
+    &lt;/tr&gt;\n";
+  $distance += 50; 
+}
+
+?&gt;
+        </strong>
+&lt;/table&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+        </pre>
+        
+        <h3><a name="var_form">Доступ к переменным формы</a></h3>
+        <ul>
+        <li>$_POST['myname']
+        <li>$_GET['...']
+        <li>$_REQUEST['...']
+        </ul>
+        
+        <h3><a name="concat">Конкатенация</a></h3>
+        <ul>
+        <li>echo $myvar.' ...';
+        <li>echo "$myvar ..."; <span class="note"> - в двойных кавычках</span>
+        </ul>
+        
+        <h3><a name="type">Типы</a></h3>
+        <ul>
+        <li>Integer
+        <li>Float
+        <li>String
+        <li>Bolean
+        <li>Array
+        <li>Object
+        <li>NULL
+        <li>resource
+        </ul>
+        
+        <h3><a name="type_convert">Приведение типов</a></h3>
+        <ul>
+        <li>$var = (float)$var2;
+        </ul>
+        
+        <h3><a name="var_var">Переменные переменных</a></h3>
+        <pre>
+        <strong>$varname = "var";
+        $$varname = 5;</strong> то же, что и <strong>$var = 5;</strong>
+        </pre>
+        
+        <h3><a name="const">Константы</a></h3>
+        Можно увидеть в <strong>phpinfo()</strong>
+        <ul>
+        <li>define('MYCONST', 100);
+        <li> ...
+        <li>echo MYCONST;<span class="note"> - без $</span>
+        </ul>
+        
+    </td>
+  </tr>
+</table>
+</body>
+</html>
