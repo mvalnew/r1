@@ -1,0 +1,28 @@
+<ul>
+    <li>$a + $b<span class="note"> - Массив $a добавляется к $b, элементы с конфликтующими ключами не добавляются</span>
+    <li>$a == $b<span class="note"> - равно (одниаковые элементы)</span>
+    <li>$a === $b<span class="note"> - идентично (однинаковые элементы с одинаковым типом в том же порядке)</span>
+    <li>$a != $b, $a &lt;&gt; $b<span class="note"> - не равно</span>
+    <li>$a !== $b<span class="note"> - не идентично</span>
+    <li>array_push($myarray, $el)<span class="note"> - добавление в конец массива</span>
+    <li><strong>count</strong>($myarray) <span class="note"> - количество элементов</span>
+    <li><strong>array_count_values</strong>($myarray) <span class="note"> - возвращает ассоциативный массив с частотами элементов</span>
+    <li>$myarray = <strong>explode</strong>(сепаратор, $mystring, $maximum)<span class='note'> - разбиение строки</span>
+    <li>$el = <strong>current</strong>($myarray)<span class='note'> - текущий элемент</span>
+    <li>$el = <strong>each</strong>($myarray)<span class='note'> - текущий элемент + шаг вперед</span>
+    <li>$el = <strong>next</strong>($myarray)<span class='note'> - шаг вперед + текущий элемент</span>
+    <li>$el = <strong>prev</strong>($myarray)<span class='note'> - обратная next</span>
+    <li>$el = <strong>reset</strong>($myarray)<span class='note'> - в начало + первый элемент</span>
+    <li>$el = <strong>end</strong>($myarray)<span class='note'> - в конец + последний элемент</span>
+    <li><strong>extract</strong>($myarray, [extract_type, prefix])<span class='note'> - разложение на переменные с именами ключей</span>
+    <ul>
+        <li>EXTR_OVERWRITE<span class='note'> - если конфликт перезапись (по умолчанию)</span> 
+        <li>EXTR_SKIP<span class='note'> - если конфликт пропуск</span> 
+        <li>EXTR_PREFIX_SAME<span class='note'> - если конфликт добавляет префикс</span> 
+        <li>EXTR_PREFIX_ALL<span class='note'> - всегда добавляет префикс (по умолчанию)</span> 
+        <li>EXTR_PREFIX_INVALID<span class='note'> - добавляет префикс для недопустимых имен</span> 
+        <li>EXTR_IF_EXISTS<span class='note'> - извлечение только существующих переменных</span> 
+        <li>EXTR_PREF_IF_EXIST<span class='note'> - добавляет префикс если без префикса уже существует</span> 
+        <li>EXTR_REFS<span class='note'> - извлекает переменные как ссылки</span> 
+     </ul>
+</ul>

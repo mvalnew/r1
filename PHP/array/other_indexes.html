@@ -1,0 +1,17 @@
+<ul>
+    <li>$prices = <strong>array</strong> ("Покрышки"=>100, "Масло"=>10, "Свечи зажигания"=>4);
+    <li>$prices['Масло'] = 10;
+    <li><pre>foreach($prices as $key=>$value) {
+        echo $key." = ".$value.&lt;br /&gt;";
+    }</pre>
+    <li><pre>while($el = each($prices)) {
+        echo $el['key']; <span class='note'>// или $el[0]</span>
+        echo ' - ';
+        echo $el['value']; <span class='note'>// или $el[1]</span>
+        echo "&lt;br /&gt;";
+    }</pre>
+    <li><pre>while(list($product, $price) = each($prices)) {
+        echo "$product - $price&lt;br /&gt;";
+    }
+    reset('prices'); <span class='note'>// сброс в начало массива</span></pre>
+</ul>
