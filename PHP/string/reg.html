@@ -1,0 +1,35 @@
+Два вида синтаксиса : POSIX и Perl <br />
+Рассматриваем POSIX :
+<ul>
+    <li><strong>"."</strong><span class='note'> - одиночный символ (кроме перевода строки)</span>
+    <li><strong>[а-я] [аеиоуыэюя] [a-zA-Z]</strong><span class='note'> - один из символов набора</span>
+    <li><strong>[^аеиоуыэюя]</strong><span class='note'> - не из набора</span>
+    <li><strong>Предопределенные классы символов :</strong>
+    <ul>
+        <li><strong>[[:alnum:]]</strong><span class='note'> - алфавитно-цифровые</span> 
+        <li><strong>[[:alpha:]]</strong><span class='note'> - буквы</span> 
+        <li><strong>[[:lower:]]</strong><span class='note'> - строчные буквы</span> 
+        <li><strong>[[:upper:]]</strong><span class='note'> - прописные буквы</span> 
+        <li><strong>[[:digit:]]</strong><span class='note'> - десятичные цифры</span> 
+        <li><strong>[[:xdigit:]]</strong><span class='note'> - шестнадцеричные цифры</span> 
+        <li><strong>[[:punct:]]</strong><span class='note'> - пунктуация</span> 
+        <li><strong>[[:blank:]]</strong><span class='note'> - табуляции и пробелы</span> 
+        <li><strong>[[:space:]]</strong><span class='note'> - любые пробельные символы</span> 
+        <li><strong>[[:cntrl:]]</strong><span class='note'> - управляющие символы</span> 
+        <li><strong>[[:print:]]</strong><span class='note'> - печатные символы</span> 
+        <li><strong>[[:graph:]]</strong><span class='note'> - печатные кроме пробельных</span> 
+    </ul>
+      <li><strong>+, *</strong><span class='note'> - одно и больше повторений, 0 и больше</span>
+      <li><strong>(очень )*крутой</strong><span class='note'> - скобки указывают подвыражение</span>
+      <li><strong>(очень ){1, 3}</strong><span class='note'> - подвыражение с количеством повторений (если не указано окончание и запятая, то точное значение, если запятая есть то количество повторений ограничено только снизу)</span>
+      <li><strong>^, $</strong><span class='note'> - в начале и в конце</span>
+      <li><strong>com|edu|net</strong><span class='note'> - ветвление (одно из)</span>
+      <li><strong>Спец.символы</strong><span class='note'> - предваряются \ </span>
+        <br /> \ ^ $ . | ( ) * + { } ?<span class='note'> (за пределами квадратных скобок)</span>
+        <br /> \ ^ -<span class='note'> (внутри квадратных скобок) </span>
+   <li>int <strong>ereg</strong>(string рег_выражение, string где_ищем [, array массив_соответствий])<span class='note'> - поиск соответствий (возвращает длину совпавшей строки или false)</span>
+   <li>i<strong>eregi()</strong><span class='note'> - без учета регистра</span>
+   <li>int <strong>ereg_replace</strong>(string рег_выражение, string на_что_мняем, string где_ищем)<span class='note'> - поиск и замена соответствий (устарело - надо заменить на preg_replace)</span>
+   <li><strong>eregi_replace()</strong><span class='note'> - без учета регистра</span>
+   <li>array <strong>split</strong>(string рег_выражение, string где_ищем [, int макс_колич])<span class='note'> - разбиение</span>
+</ul>

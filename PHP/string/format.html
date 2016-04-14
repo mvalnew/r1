@@ -1,0 +1,31 @@
+<ul>
+    <li>$name = <strong>trim/ltrim/rtrim</strong>($_POST('name') [, список_удаляемых_символов]);<span class='note'> - усечение</span>
+    <li>echo <strong>nl2br</strong>($mailcontent);<span class='note'> - замена переводов строки на &lt;br /&gt;</span>
+    <li>string <strong>sprintf</strong>(string формат, [, mixed аргументы ...]);<span class='note'> - возврат отформатированной строки</span>
+    <li>void <strong>printf</strong>(string формат, [, mixed аргументы ...]);<span class='note'> - вывод отформатированной строки в браузер</span>
+    <ul>
+        <li><span class='note'>формат : </span> <strong>%[ номер_аргумента\$ ][ 'дополняющий_символ ][ - ][ ширина ][ .точность ] тип</strong> (если надо вывести %, то %%)
+        <li><strong>[ дополняющий символ ]</strong> - для дополнения до указанной ширины (пробел по умолчанию), если 0 или пробел, то кавычка не нужна
+        <li><strong>[ - ]</strong> выравнивание по левому краю
+        <li><strong>[ ширина ]</strong> в символах для переменной
+        <li><strong>тип :</strong>
+        <ul>
+            <li><strong>b</strong> - целое в двоичное число
+            <li><strong>c</strong> - целое в симол
+            <li><strong>d</strong> - целое в десятичное число
+            <li><strong>f</strong> - двойной точности в плавающую точку
+            <li><strong>o</strong> - целое в восьмеричное
+            <li><strong>s</strong> - строка
+            <li><strong>u</strong> - целое десятичное без знака
+            <li><strong>x</strong> - целое в 16-е строчными
+            <li><strong>X</strong> - целое в 16-е прописными
+        </ul>
+    </ul>
+    <li><strong>vprintf(), vsprintf()</strong><span class='note'> - то же но второй параметр - массив аргументов </span> 
+    <li><strong>strtoupper()</strong><span class='note'> - в прописные </span> 
+    <li><strong>strtolower()</strong><span class='note'> - в строчные </span> 
+    <li><strong>ucfirst()</strong><span class='note'> - первый символ в прописные </span> 
+    <li><strong>ucwords()</strong><span class='note'> - первый символ каждого слова в прописные </span> 
+    <li>$feedback = <strong>addslash</strong>($str)<span class='note'> - добавление слешей перед спец.символами  (сервер сам может добавлять если установлен magic_quotes_gpc - можно проверит функцией get_magic_quotes_gpc())</span> 
+    <li><strong>stripslash()</strong><span class='note'> - удаление слешей (кроме двойных)</span> 
+</ul>
