@@ -1,0 +1,106 @@
+<pre>
+class classname {
+    var $attribute; <span class='note'> // атрибут</span>
+    functiot operation($param) { <span class='note'> // операция</span>
+        $this->attribute = $param; <span class='note'> // обращение к атрибуту внутри класса - через -></span>
+    }
+    functiot __construct($param) { <span class='note'> // конструктор</span>
+    }
+    functiot __destruct() { <span class='note'> // деструктор</span>
+    }
+    
+    <span class='note'> //отсутствующий атрибут</span>
+    functiot __get($name) { 
+        return $this->$name;
+    }
+    functiot __set($name, $value) { 
+        $this->$name = $value;
+    }
+    <span class='note'> //отсутствующая функция</span>
+    functiot __call($method_name, $arr_param) { 
+        ...
+    }
+}
+<span class='note'> //отсутствующий класс (вне объявления класса)</span>
+function __autoload($name) {
+    include_once $name.".php";
+}
+...
+$a = new classname('111'); <span class='note'> // создание экземпляра</span>
+$a->attribute = "value"; <span class='note'> // обращение к атрибуту извне класса</span>
+</pre>
+<ul>
+    <li><strong>Модификаторы доступа : </strong>private, public(по умолч.), protected
+    <li><strong>Наследование : </strong>class B extends A { ... }
+    <li><strong>Преопределение : </strong>повторное определение в подклассе
+    <li><strong>Вызов родительской операции : </strong>parent::operation() <span class='note'> // но значения атрибутов используемых в родительской операции будут из дочернего класса</span>
+    <li><strong>Предотвращение наследования (и переопределения!) : </strong>final
+</ul>
+<h3>Интерфейсы :</h3>
+<pre>
+interface Displayable {
+    function display();
+}
+class webPage implements Displayable {
+    function display() {
+        ...
+    }
+}
+</pre>
+<h3>Константы класса :</h3>
+<pre>
+class Math{
+    const pi = 3.14159;
+}
+...
+echo Math::pi;
+</pre>
+<h3>Статические методы :</h3>
+<pre>
+class Math{
+    static function squared($input) {
+        return $input*$input;
+    }
+}
+...
+echo Math::squared(8);
+</pre>
+<h3>Проверка и указание типа :</h3>
+<pre>
+$b instanceof B <span class='note'> // проверка типа</span>
+...
+function check(B $someclass) ...<span class='note'> // указание типа</span>
+</pre>
+<h3>Клонирование :</h3>
+<pre>
+$c clone $b; 
+...
+function __clone() ...<span class='note'> // вызывается после стандартного клонирования</span>
+</pre>
+<h3>Абстрактные классы и методы :</h3>
+<pre>
+abstract class A {
+    abstract function op();
+}
+</pre>
+<h3>Перебор атрибутов объекта :</h3>
+<pre>
+foreach ($x as $attr) ... 
+</pre>
+<h3>Более сложный перебор :</h3>
+<ul>
+    <li>В классе в котором надо перебор реализовать интерфейс IteratorAggregate
+    <li>реализовать метод getIterator возвращающий экземпляр класса итератора
+    <li>интерфейс Iterator :
+    <ul>
+        <li> rewind() <span class='note'> // установка внутреннего указателя на начало данных</span>
+        <li> valid() <span class='note'> // имеются ли еще данные в текущей позиции</span>
+        <li> key() <span class='note'> // значение указателя на данные</span>
+        <li> value() <span class='note'> // значение данных для текущего указателя</span>
+        <li> next() <span class='note'> // перемещение указателя
+    </ul>
+ </ul>
+ <h3>Строковое представление объекта :</h3>
+<pre>
+public function __toString() ... 
+</pre>

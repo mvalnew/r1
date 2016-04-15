@@ -1,5 +1,6 @@
-body {font-family: Geneva, Arial, Helvetica, sans-serif;}
+body, pre {font-family: Geneva, Arial, Helvetica, sans-serif; color: #333}
 tr {vertical-align: top;}
 td {padding: 7px;}
 li {padding: 3px;}
-.note {font-weight: normal; color: #007700;}
+pre { color: #805555; font-family: Comic Sans MS;}
+.note {font-weight: normal; color: #337733;}
