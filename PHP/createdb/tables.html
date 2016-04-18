@@ -1,0 +1,57 @@
+<ul>
+	<li><strong>Использование требуемой БД : </strong> USE имя_БД
+	<li><strong>Создание таблицы : </strong> CREATE TABLE имя_таблицы(столбцы)
+	<li><strong>Создание таблиц из sql-файла : </strong><pre>
+		mysql -h хост bookorama -D books -p &lt; bookorama.sql</pre>
+	<li><pre><strong class='note'>// Пример sql-файла создания таблиц:</strong>
+create table customers
+(
+	customerid int unsigned not null auto_increment primary key, 
+	name char(50) not null,
+	address char(50) not null,
+	city char(30) not null
+);
+create table orders
+(
+	orderid int unsigned not null auto_increment primary key, 
+	customerid int unsigned not null,
+	amount float(6,2),
+	date date not null
+);
+create table books
+(
+	isbn char(13) not null primary key, 
+	author char(50),
+	title char(100),
+	price float(4,2) not null
+);
+create table order_items
+(
+	orderid int unsigned not null, 
+	isbn char(13) not null,
+	quantity tinyint unsigned,
+	primary key (orderid, isbn)
+);
+create table book_reviews
+(
+	isbn char(13) not null primary key,
+	rewiew text 
+);
+	</pre>
+	</li>
+	<li><strong>Просмотр БД : </strong> show databases;
+	<li><strong>Просмотр таблиц : </strong> show tables;
+	<li><strong>Описание таблицы : </strong> describe books;
+	<li><strong>Создание индексов : </strong><br> CREATE [UNIQUE|FULLTEXT] INDEX имя_индекса
+	ON имя_таблицы (имя_столбца_индекса [(длина)] [ASC|DESC], ...)
+</ul>
+<h3>Идентификаторы в MySQL</h3>
+<ul>
+	<li><strong>Виды идентификаторов : </strong><br>
+		базы данных, таблицы, столбцы, индексы, псевдонимы<br>
+		БД соответствуют каталогам, а таблицы - файлам, это
+		влияет на зависимость от регистра букв а так же набор символов.<br> 
+		В остальных случаях допустимы все символы.</li>
+	<li><strong>Расположение каталогов и файлов содержащих данные : </strong><br>
+		mysqladmin -h хост -u root -p variables<span class='note'> // в выводе надо найти переменную datadir</span></li>
+</ul>

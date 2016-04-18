@@ -1,0 +1,78 @@
+<ul>
+	<li><strong>Уровни полномочий  :</strong> Глобальный / База данных / Таблица / Столбец
+	<li><strong>Создание пользователя :</strong><pre>
+	GRANT полномочия [столбцы]
+	ON элемент <span class='note'>// БД.*, БД.таблица, таблица (в тек.БД), *.* или *</span>
+	To имя_пользователя [IDENTIFIED By 'пароль']
+	[REQUIRE параметры_ssl]
+	[WITH [GRANT OPTION | огранич_параметры]] <span class='note'>
+	// огранич_параметры : MAX_QUERIES_PER_HOUR n, MAX_UPDATES_PER_HOUR n, MAX_CONNECTION_PER_HOUR n</span>	</pre>
+	<li><strong>Хранение полномочий в таблицах :</strong> mysql.user, mysql.db, mysql.host, mysql.tables_priv, mysql.columns_priv
+</ul>
+<table class='table'>
+	<caption>Полномочия для пользователей</caption>
+	<tr><th>Полномочие</th><th>Применяется к</th><th>Описание</th></tr>
+	<tr><td>SELECT</td><td>таблицам, столбцам</td><td>разрешение выбирать из таблиц строки</td></tr>
+	<tr><td>INSERT</td><td>таблицам, столбцам</td><td>разрешение вставлять строки в таблицы</td></tr>
+	<tr><td>UPDATE</td><td>таблицам, столбцам</td><td>разрешение изменять существующие строки</td></tr>
+	<tr><td>DELETE</td><td>таблицам</td><td>разрешение удалять строки из таблиц</td></tr>
+	<tr><td>INDEX</td><td>таблицам</td><td>разрешение создавать и удалять индексы таблиц</td></tr>
+	<tr><td>ALTER</td><td>таблицам</td><td>разрешение изменять структуру таблиц</td></tr>
+	<tr><td>CREATE</td><td>БД, таблицам</td><td>разрешение создавать БД или таблицы</td></tr>
+	<tr><td>DROP</td><td>БД, таблицам</td><td>разрешение удалять БД или таблицы</td></tr>
+</table>
+<table class='table'>
+	<caption>Полномочия для администраторов</caption>
+	<tr><th>Полномочие</th><th>Описание</th></tr>
+	<tr><td>CREATE TEMPORARY TABLES</td><td>разрешение использовать TEMPORARY при создании таблицы</td></tr>
+	<tr><td>FILE</td><td>разрешение помещать таблицы в файлы и наоборот</td></tr>
+	<tr><td>LOCK TABLES</td><td>явное использование операторов LOCK TABLES</td></tr>
+	<tr><td>PROCESS</td><td>просмотр процессов всех пользователей</td></tr>
+	<tr><td>RELOAD</td><td>перезагрузка таблиц полномочий, сброс полномочий, хостов, файлов журналов и табдиц</td></tr>
+	<tr><td>REPLICATION CLIENT</td><td>использование SHOW STATUS на ведущих и ведомых серверах репликации</td></tr>
+	<tr><td>REPLICATION SLAVE</td><td>подключение ведомого сервера к ведущему</td></tr>
+	<tr><td>SHOW DATABASEA</td><td>возможность получить список всех баз</td></tr>
+	<tr><td>SHUTDOWN</td><td>остановка сервера MySQL</td></tr>
+	<tr><td>SUPER</td><td>удаление потока любого пользователя</td></tr>
+</table>
+<table class='table'>
+	<caption>Специальные полномочия</caption>
+	<tr><th>Полномочие</th><th>Описание</th></tr>
+	<tr><td>ALL</td><td>Все полномочия</td></tr>
+	<tr><td>USAGE</td><td>Не предоставляет никаких полномочий</td></tr>
+</table>
+<ul>
+	<li><strong>Лишение полномочий:</strong> <pre>
+		REWOKE полномочия [(столбцы)]
+		ON элемент
+		FROM имя_пользователя
+	</pre>
+	<li>Примеры:</li>
+	<ul>
+		<li><pre><span class='note'>// все права для пользователя fred с правом передачи прав другим пользователям</span>
+			grand all
+			on *
+			to fred identified by 'mnb123'
+			with grant option;</pre></li>
+		<li><pre><span class='note'>// лишение всех полномочий</span>
+			revoke all privileges, grant
+			from fred;</pre>
+		<li><pre><span class='note'>// пользователь без полномочий</span>
+			grant usage
+			on books.*
+			to anna identified by 'a123';</pre>
+		<li><pre><span class='note'>// предоставление отдельных полномочий</span>
+			grant select, insert, update, delete, index, alter, create, drop
+			on books.*
+			to anna;</pre>
+		<li><pre><span class='note'>// удаление отдельных полномочий</span>
+			revoke alter, create, drop
+			on books.*
+			from anna;</pre>
+	</ul>
+	<li><strong>Права для доступа из интернет:</strong> <pre>
+		grant select, insert, delete, update
+		on books.*
+		to bookorama identified by 'bookorama123';
+	</pre>
+</ul>

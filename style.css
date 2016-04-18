@@ -1,6 +1,9 @@
 body, pre {font-family: Geneva, Arial, Helvetica, sans-serif; color: #333}
+table {border-spacing: 0}
+table caption {font-weight: bold; font-size: large}
 tr {vertical-align: top;}
 td {padding: 7px;}
 li {padding: 3px;}
 pre { color: #805555; font-family: Comic Sans MS;}
 .note {font-weight: normal; color: #337733;}
+.table td, th {border: 1px solid #aaa;}
