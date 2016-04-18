@@ -51,7 +51,91 @@ create table book_reviews
 		базы данных, таблицы, столбцы, индексы, псевдонимы<br>
 		БД соответствуют каталогам, а таблицы - файлам, это
 		влияет на зависимость от регистра букв а так же набор символов.<br> 
-		В остальных случаях допустимы все символы.</li>
+		В остальных случаях допустимы все символы (в обратных кавычках).</li>
 	<li><strong>Расположение каталогов и файлов содержащих данные : </strong><br>
 		mysqladmin -h хост -u root -p variables<span class='note'> // в выводе надо найти переменную datadir</span></li>
+</ul>
+<h3>Типы данных столбцов</h3>
+<ul>
+	<li>Числовые типы<br>
+		M - максимальная длина (до 255)<br>
+		D - минимальное из (M-2) и 30<br>
+		ZEROFILL - ведущие нули (автоматически становится UNSIGNED)
+		<table class='table'>
+			<caption>Целочисленные типы</caption>
+			<tr><th>Тип</th><th>Диапазон</th><th>Байт</th><th>Описание</th></tr>
+			<tr><td>TINYINT [(M)] или BIT или BOOL</td><td>-127...128 (0..255)</td><td>1</td><td>Очень маленькие целые числа</td></tr>
+			<tr><td>SMALLINT [(M)]</td><td>-32768..32767 (0..65535)</td><td>2</td><td>Маленькие целые числа</td></tr>
+			<tr><td>MEDIUM [(M)]</td><td>-8 388 608..8 388 607 (0..16 777 215)</td><td>3</td><td>Средние целые числа</td></tr>
+			<tr><td>INT [(M)] или INTEGER</td><td>-2<sup>31</sup>..2<sup>31</sup>-1 (0..2<sup>32</sup>-1)</td><td>4</td><td>Обычные целые числа</td></tr>
+			<tr><td>BIGINT [(M)]</td><td>-2<sup>63</sup>..2<sup>63</sup>-1 (0..2<sup>64</sup>-1)</td><td>8</td><td>Большие целые числа</td></tr>
+		</table>
+		<table class='table'>
+			<caption>Типы с плавающей запятой</caption>
+			<tr><th>Тип</th><th>Диапазон</th><th>Байт</th><th>Описание</th></tr>
+			<tr><td>FLOAT (точность)</td><td>заввисит от точности</td><td>различна</td><td>Одинарной и двойной точности</td></tr>
+			<tr><td>FLOAT (M,D)</td><td>+/-E<sup>+/-38</sup></td><td>4</td><td>Одинарной точности (FLOAT(4))</td></tr>
+			<tr><td>DOUBLE (M,D)</td><td>+/-E<sup>+/-308</sup></td><td>8</td><td>Двойной точности (FLOAT(8))</td></tr>
+			<tr><td>DECIMAL (M [,D])</td><td>различный</td><td>М+2</td><td>Хранится как char, диапазон зависит от М </td></tr>
+		</table>
+	</li>
+	<li>Типы даты и времени
+		<table class='table'>
+			<caption>Типы даты и времени</caption>
+			<tr><th>Тип</th><th>Диапазон</th><th>Описание</th></tr>
+			<tr><td>DATE</td><td>от 1000-01-01 до 9999-12-31</td><td>Дата ГГГГ-ММ-ДД</td></tr>
+			<tr><td>TIME</td><td>от -838:59:59 до 838:59:59</td><td>Время ЧЧ:ММ:СС</td></tr>
+			<tr><td>DATETIME</td><td>от 1000-01-01 00:00:00 до 9999-12-31 23:59:59</td><td>Дата и время ГГГГ-ММ-ДД ЧЧ:ММ:СС</td></tr>
+			<tr><td>TIMESTAMP [(M)]</td><td>от 1970-01-01 00:00:00 до 2037</td><td>Метка времени</td></tr>
+			<tr><td>YEAR [(2 | 4)]</td><td>70-69 (1901 - 2155)</td><td>Год</td></tr>
+		</table>
+		<table class='table'>
+			<caption>Типы отображения для TIMESTAMP</caption>
+			<tr><th>Тип</th><th>Формат отображения</th></tr>
+			<tr><td>TIMESTAMP </td><td>ГГГГММДДЧЧММСС</td></tr>
+			<tr><td>TIMESTAMP(14) </td><td>ГГГГММДДЧЧММСС</td></tr>
+			<tr><td>TIMESTAMP(12) </td><td>ГГММДДЧЧММСС</td></tr>
+			<tr><td>TIMESTAMP(10) </td><td>ГГММДДЧЧММ</td></tr>
+			<tr><td>TIMESTAMP(8) </td><td>ГГГГММДД</td></tr>
+			<tr><td>TIMESTAMP(6) </td><td>ГГММДД</td></tr>
+			<tr><td>TIMESTAMP(4) </td><td>ГГММ</td></tr>
+			<tr><td>TIMESTAMP(2) </td><td>ГГ</td></tr>
+		</table>
+	</li>
+	<li>Строковые типы
+		<ul>
+			<li>Обычные строки
+				<p>MySQL усекает пробелы в конце строк CHAR при извлечении и в VARCHAR при сохранении</p>
+				<table class='table'>
+					<caption>Обычные строки</caption>
+					<tr><th>Тип</th><th>Диапазон</th><th>Описание</th></tr>
+					<tr><td>[NATIONAL] CHAR(M) [BINARY | ASCII | UNICODE]</td><td>от 0 до 255</td><td>Фиксированной длины</td></tr>
+					<tr><td>CHAR</td><td>1</td><td>Синоним CHAR(1)</td></tr>
+					<tr><td>[NATIONAL] VARCHAR(M) [BINARY]</td><td>0..255</td><td>Произвольной длины</td></tr>
+				</table>
+			</li>
+			<li>TEXT и BLOB
+				<table class='table'>
+					<caption>TEXT и BLOB</caption>
+					<tr><th>Тип</th><th>макс.длина</th></tr>
+					<tr><td>TINYBLOB</td><td>255</td></tr>
+					<tr><td>TINYTEXT</td><td>255</td></tr>
+					<tr><td>BLOB</td><td>65 535</td></tr>
+					<tr><td>TEXT</td><td>65 535</td></tr>
+					<tr><td>MEDIUMBLOB</td><td>16 177 215</td></tr>
+					<tr><td>MEDIUMTEXT</td><td>16 177 215</td></tr>
+					<tr><td>LONGBLOB</td><td>4 294 967 295</td></tr>
+					<tr><td>LONGTEXT</td><td>4 294 967 295</td></tr>
+				</table>
+			</li>
+			<li>ENUM и SET
+				<table class='table'>
+					<caption>ENUM и SET</caption>
+					<tr><th>Тип</th><th>макс. колич значений в наборе</th><th>Описание</th></tr>
+					<tr><td>ENUM('значение1','значение2', ...)</td><td>65 535</td><td>Столбцы этого типа могут содержать только одно из перечисленных значений или NULL</td></tr>
+					<tr><td>SET('значение1','значение2', ...)</td><td>64</td><td>Столбцы этого типа могут содержать набор указанных значений или NULL</td></tr>
+				</table>
+			</li>
+		</ul>
+	</li>
 </ul>
