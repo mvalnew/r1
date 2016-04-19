@@ -1,3 +1,5 @@
+create database books;
+use books;
 create table customers
 (
 	customerid int unsigned not null auto_increment primary key, 
