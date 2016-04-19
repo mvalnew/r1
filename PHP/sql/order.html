@@ -1,0 +1,23 @@
+<ul>
+  <li><pre>select name, address
+    from customers
+    ORDER by name DESC;</pre></li>
+  <li><pre>select customerid, AVG(amount)
+    from orders
+    GROUP BY customerid
+    HAVING avg(amount) > 50</pre></li>
+</ul>
+<table class='table'>
+  <caption>Функции агрегирования</caption>
+  <tr><th>Название</th><th>Описание</th></tr>
+  <tr><td>AVG(столбец)</td><td>среднее</td></tr>
+  <tr><td>COUNT([DISTING] столбец)</td><td>количество ненулевых, если DISTING, то количество различных, если вместо столбца *, то количество вместе с нулевыми</td></tr>
+  <tr><td>MIN(столбец)</td><td>минимальное</td></tr>
+  <tr><td>MAX(столбец)</td><td>максимальное</td></tr>
+  <tr><td>STD(столбец)</td><td>стандартное отклонение</td></tr>
+  <tr><td>SUM(столбец)</td><td>сумма</td></tr>
+</table>
+<h4>Ограничение количества строк</h4>
+<pre>select name
+from customers
+LIMIT 2, 3; <span class='note'>// 3 строки начиная со 2-й (нумерация с 0)</span></pre>

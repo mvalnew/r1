@@ -1,0 +1,31 @@
+<strong>ALTER TABLE [IGNORE]</strong> имя_таблицы изменение [, изменение]
+<table class='table'>
+	<caption>Преобразования в операторе ALTER</caption>
+	<tr><th>Синтаксис</th><th>Описание</th></tr>
+	<tr><td>ADD [COLUMN] описание_столбца [FIRST | AFTER столбец]</td><td>добавление столбца в указанное место</td></tr>
+	<tr><td>ADD [COLUMN] (описание_столбца, описание_столбца, ...)</td><td>добавление столбцов</td></tr>
+	<tr><td>ADD INDEX [индекс] (столбец, столбец, ...)</td><td>добавление индекса</td></tr>
+	<tr><td>ADD [CONSTRAINT [символ]] PRIMARY KEY (столбец, ...)</td><td>Создание первичного ключа</td></tr>
+	<tr><td>ADD UNIQUE [CONSTRAINT [символ]] [индекс] (столбец, ...)</td><td>Добавление уникального индекса</td></tr>
+	<tr><td>ADD [CONSTRAINT [символ]] FOREGIN KEY [индекс] (индексный_столбец, ...) [определение_ссылки]</td><td>добавление внешнего ключа</td></tr>
+	<tr><td>ALTER [COLUMN]  {SET DEFAULT значение | DROP DEFAULT}</td><td>добавление или удаление значения по умолчанию для столбца</td></tr>
+	<tr><td>CHANGE [COLUMN] столбец новое_описание_столбца</td><td>изменение столбца, в т.ч. имени</td></tr>
+	<tr><td>MODIFY [COLUMN] описание столбца</td><td>изменение типа столбца, но не имени</td></tr>
+	<tr><td>DROP [COLUMN] столбец</td><td>удаление столбца</td></tr>
+	<tr><td>DROP PRIMARY KEY</td><td>удаление первичного индекса (но не столбца)</td></tr>
+	<tr><td>DROP INDEX индекс</td><td>удаление индекса</td></tr>
+	<tr><td>DROP FOREGIN KEY ключ</td><td>удаление внешнего ключа (но не столбца)</td></tr>
+	<tr><td>DISABLE KEYS</td><td>отключение обновления индексов</td></tr>
+	<tr><td>ENABLE KEYS</td><td>включение обновления индексов</td></tr>
+	<tr><td>RENAME [AS] новое_имя_таблицы</td><td>переименование таблицы</td></tr>
+	<tr><td>ORDER BY</td><td>повторно создает таблицу с упорядочиванием строк (порядок не сохраняется при изменении в таблице)</td></tr>
+	<tr><td>CONVERT TO CHARACTER SET набор_символов COLLATE сопост</td><td>преобразование всех тестовых столбцов к указанному набору символов и правилам сопоставления</td></tr>
+	<tr><td>[DEFAULT] CHARACTER SET набор_симв COLLATE сопост</td><td>установка набора символов и правил сопоставления по умолчанию</td></tr>
+	<tr><td>DISCARD TABLESPACE</td><td>удаление лежащего в основе файла табличной памяти</td></tr>
+	<tr><td>IMPORT TABLESPACE</td><td>повторное создание лежащего в основе файла табличной памяти</td></tr>
+	<tr><td>парметры таблицы</td><td>переустановка параметров таблицы</td></tr>
+</table>
+<br>
+пример :
+<pre>alter table orders
+add tax float(6,2) after amount</pre>

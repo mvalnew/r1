@@ -1,0 +1,13 @@
+<ul>
+  <li>Внутреннее соединение<pre>select orders.orderid, orders.amount, orders.date 
+  from customers, orders 
+  where customers.name='Слава Моргунов'
+  and customers.customerid=orders.customerid;</pre></li>
+  <li>Левостороннее соединение<pre>select orders.orderid, orders.amount, orders.date 
+  from customers LEFT JOIN orders 
+  ON customers.name='Слава Моргунов'
+  and customers.customerid=orders.customerid;</pre></li>
+  <li>Псевдонимы<pre>select c.name
+    from customers AS c, orders AS o
+    where c.customerid = o.customerid;</pre></li>
+</ul>

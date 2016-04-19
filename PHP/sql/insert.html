@@ -1,0 +1,17 @@
+<ul>
+	<li><strong>INSERT</strong> [LOW_PRIORITY | DELAYED][IGNORE] [INTO] <strong>таблица [(столбец1, столбец2, ...)]<br>VALUES (значение1, значение2, ...)</strong> [ON DUPLICATE KEY UPDATE выражение];
+	<li>Выполнение сценария: <strong>mysql -h help -bookorama -p books &lt; book_insert.sql</strong>
+<pre>
+  <span class='note'>// строки - в кавычках
+  // несколько вставок - через запятую</span>
+  insert into customers values	
+  (3, "Саша Валентей", "12, ул. Гудвина", "г. Изумрудный"),
+  (4, "Ева Легкая", "34, пр. Незнайки", "г. Солнечный"),
+  (5, "Слава Моргунов", "56, пер. Поттера", "пгт Хогвартс");
+
+insert into orders values
+  (NULL, 3, 69.98, "2008-04-02"),
+  (NULL, 1, 49.99, "2008-04-15"),
+  (NULL, 2, 74.98, "2008-04-19"),
+  (NULL, 3, 24.99, "2008-05-01");</pre></li> 
+</ul>

@@ -1,0 +1,35 @@
+<ul>
+  <li><pre>SELECT [параметры] элементы
+    [INTO инф_файла]
+    FROM таблицы
+    [WHERE условие]
+    [GROUP BY тип_группировки]
+    [HAVING определение_where]
+    [ORDER BY тип_упорядочивания]
+    [LIMIT критерий-ограничения]
+    [PROCEDURE имя_процедуры(аргументы)]
+    [параметры_блокировки]
+    ;</pre></li>
+  <ul>пример:
+    <pre>select name, city from customers;</pre></ul>
+</ul>
+<h4>Выборка по критерию</h4>
+<pre>select * from orders WHERE customerid = 5;</pre>
+<table class='table'>
+  <caption>Основные операции сравнения в WHERE</caption>
+  <tr><th>Операция</th><th>Пример</th></tr>
+  <tr><td>=</td><td>customerid = 3</td></tr>
+  <tr><td>&gt;</td><td>amount &gt; 60.00</td></tr>
+  <tr><td>&lt;</td><td>amount &lt; 60.00</td></tr>
+  <tr><td>&gt;=</td><td>amount &gt;= 60.00</td></tr>
+  <tr><td>&lt;=</td><td>amount &lt;= 60.00</td></tr>
+  <tr><td>!= (&lt;&gt;)</td><td>quantity != 0</td></tr>
+  <tr><td>IS NOT NULL</td><td>address is not null</td></tr>
+  <tr><td>IS NULL</td><td>address is null</td></tr>
+  <tr><td>BETWEN</td><td>amount betwen 0 and 60.00</td></tr>
+  <tr><td>IN</td><td>city in ("Kiev", "Minsk")</td></tr>
+  <tr><td>NOT IN</td><td>city not in ("Kiev", "Minsk")</td></tr>
+  <tr><td>LIKE</td><td>name like ("Fedot %")</td></tr>
+  <tr><td>NOT LIKE</td><td>name not like ("Fedot %")</td></tr>
+  <tr><td>REGEXP</td><td>name regexp '^E'</td></tr>
+</table>

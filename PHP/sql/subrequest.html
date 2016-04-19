@@ -1,0 +1,16 @@
+<ul>
+  <li>В сравнениях :<pre>select customerid, amount
+    from orders
+    where amount = (SELECT MAX(AMOUNT) FROM ORDERS)</pre></li>
+  <li>В условиях :<table class='table'>
+    <caption>Операции подзапросов</caption>
+    <tr><th>Название</th><th>Пример</th><th>Описание</th></tr>
+    <tr><td>ANY</td><td>SELECT c1 FROM t1 WHERE c1 > ANY (SELECT c1 FROM t2)</td><td>условие истинно хотябы для одной строки подзапроса</td></tr>
+    <tr><td>IN</td><td>SELECT c1 FROM t1 WHERE c1 IN (SELECT c1 FROM t2)</td><td>эквивалентно =ANY</td></tr>
+    <tr><td>ALL</td><td>SELECT c1 FROM t1 WHERE c1 > ALL (SELECT c1 FROM t2)</td><td>условие истинно для всех строк подзапроса</td></tr>
+    <tr><td>[NOT] EXISTS</td><td>SELECT c1 FROM t1 WHERE NOT EXISTS (SELECT c1 FROM t2 WHERE t2.isbn=t1.isbn)</td><td>Связанные подзапросы. Внутренний запрос ссылается на данные внешнего запроса. Существует хотя бы одна строка в подзапросе</td></tr>
+  </table></li>
+  <li>Как временная таблица. В конструкции FROM внешнего запроса.<pre>select * from
+    (SELECT customerid, name FROM customers WHERE city='г. Солнечный')
+    as box_hill_customers;</pre></li>
+</ul>
