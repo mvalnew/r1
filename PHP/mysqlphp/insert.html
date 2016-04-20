@@ -1,0 +1,31 @@
+<h4>Форма ввода новой книги</h4>
+<form action='insert_book.php' method="post">
+	<table>
+		<tr>
+			<td>ISBN</td>
+			<td><input type="text" name="isbn" maxlength="13" size="13"></td>
+		</tr>
+		<tr>
+			<td>Автор</td>
+			<td><input type="text" name="author" maxlength="30" size="30"></td>
+		</tr>
+		<tr>
+			<td>Название</td>
+			<td><input type="text" name="title" maxlength="60" size="30"></td>
+		</tr>
+		<tr>
+			<td>Цена</td>
+			<td><input type="text" name="price" maxlength="7" size="7"></td>
+		</tr>
+		<tr>
+			<td colspan="2"><input type="submit" value="Ввести"></td>
+		</tr>
+	</table>
+</form>
+<ul>
+	<li>Запрос
+<pre>$query = "insert into books values ('".$isbn."','".$author."','".$title."','".$price."')";
+$result = $db->query($query);
+</pre></li>
+<li>Сколько строк добавлено<pre>echo $db->affected_rows." книга добавлена в базу данных";</pre></li>
+</ul>

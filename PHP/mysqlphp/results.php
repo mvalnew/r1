@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-    <title><?php echo $caption; ?></title>
+    <title>Результат поиска</title>
     <meta charset="utf-8">
     <link rel="stylesheet" href="/style.css">
 </head>

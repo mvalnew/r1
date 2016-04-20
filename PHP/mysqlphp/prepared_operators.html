@@ -1,0 +1,17 @@
+Для вставки :
+<pre>$query = "insert into books values (?, ?, ?, ?)";
+$stmt = $db->prepare($query);
+// sssd - три строки и число двойной точности 
+// можно так же i - целое и b - большой двоичный объект
+$stmt->bind_param("sssd", $isbn, $author, $title, $price);
+$stmt->execute();
+echo $stmt->affected_rows.' книга добавлена в базу данных.';
+$stmt->close();</pre>
+Для выборки можно использовать :
+<pre>$stmt->bind_result($isbn, $author, $title, $price);
+$stmt->execute();
+// теперь можно повторять в цикле вызов:
+$stmt->fetch();
+// каждое такое обращение извлекает из результата
+// следующую строку и заносит ее в переменные
+</pre>
