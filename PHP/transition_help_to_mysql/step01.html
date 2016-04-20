@@ -1,0 +1,8 @@
+<pre> // структура
+БД : help
+таблицы : sections, topics
+
+sections : sectionid, parent, name(varchar 50)
+topics : topicid, sectionid, name(varchar 50), content(text)
+
+создание таблиц : mysql -h help -u mysql -D help -p &lt; domains/help/php/transition_help_to_mysql/createdb.txt </pre>

@@ -2,7 +2,7 @@
 	<li><strong>Использование требуемой БД : </strong> USE имя_БД
 	<li><strong>Создание таблицы : </strong> CREATE TABLE имя_таблицы(столбцы)
 	<li><strong>Создание таблиц из sql-файла : </strong><pre>
-		mysql -h хост bookorama -D books -p &lt; bookorama.sql</pre>
+		mysql -h хост -u bookorama -D books -p &lt; bookorama.sql</pre>
 	<li><pre><strong class='note'>// Пример sql-файла создания таблиц:</strong>
 create table customers
 (
