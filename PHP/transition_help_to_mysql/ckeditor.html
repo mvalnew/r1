@@ -1,0 +1,28 @@
+<script src="/modules/ckeditor/ckeditor.js"></script>
+<form method="post">
+    <textarea name="editor1" id="editor1" rows="10" cols="80">
+    	<?php echo $topic_content; ?>
+    </textarea>
+    <script>
+        // Replace the <textarea id="editor1"> with a CKEditor
+        // instance, using default configuration.
+        CKEDITOR.replace( 'editor1' );
+    </script>
+
+	<table cellpadding="1" style="height:95px; width:317px">
+		<tbody>
+			<tr>
+				<td>Раздел :</td>
+				<td><input name="section" size="25" type="text" /></td>
+			</tr>
+			<tr>
+				<td>Статья :</td>
+				<td><input name="topic" size="25" type="text" /></td>
+			</tr>
+			<tr>
+				<td><input name="get" type="button" value="Прочитать" /></td>
+				<td style="text-align: center;"><input name="submit" type="submit" value="Записать" /></td>
+			</tr>
+		</tbody>
+	</table>
+</form>
