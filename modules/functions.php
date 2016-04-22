@@ -21,8 +21,9 @@ function html($caption, $content) { ?>
     <td id="content">
     <?php
         echo "<h2>$caption</h2>";
-        foreach(getContent($content) as $el) {
-            echo "$el\n";
+            foreach($content as $el) {
+            echo '<h3><a name="'.$el['href'].'">'.$el['title']."</a></h3> \n";
+            include $el['content'];
         } 
     ?>
     </td>
@@ -42,14 +43,8 @@ function getMenu($content) {
     }
     return $res;
 }
-function getContent($content) {
-    $res = array();
-    foreach($content as $el) {
-        $res[] = '<h3><a name="'.$el['href'].'">'.$el['title'].'</a></h3>'."\n".$el['content'];
-    }
-    return $res;
-}
+
 function addContent(&$content, $title, $href) {
-    $content[] = array('title'=>$title, 'href'=>$href, 'content'=>file_get_contents($href.'.html'));
+    $content[] = array('title'=>$title, 'href'=>$href, 'content'=>$href.'.html');
 }
 ?>

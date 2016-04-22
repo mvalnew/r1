@@ -1,3 +1,17 @@
+<?php 
+	$section = trim($_POST['section']);
+	$topic = trim($_POST['topic']);
+	if ($section && $topic) {
+		@ $db = new mysqli('localhost', 'mysql','mysql','help');
+		if (!mysqli_connect_errno()) {
+			$query = "select * from topics where topicid=$topic";
+			$result = $db->query($query);
+			$row = $result->fetch_assoc();
+			$topic_content = $row['content'];
+		}
+	}
+
+?>
 <script src="/modules/ckeditor/ckeditor.js"></script>
 <form method="post">
     <textarea name="editor1" id="editor1" rows="10" cols="80">

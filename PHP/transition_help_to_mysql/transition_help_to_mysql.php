@@ -8,11 +8,10 @@
 			$result = $db->query($query);
 			$row = $result->fetch_assoc();
 			$topic_content = $row['content'];
-			echo $topic_content;
 		}
 	}
 
-    include($_SERVER['DOCUMENT_ROOT'].'/modules/functions.php');
+	include($_SERVER['DOCUMENT_ROOT'].'/modules/functions.php');
     $content = array(); 
     addContent($content, 'Начало', 'step01');
     addContent($content, 'CKeditor', 'ckeditor');
