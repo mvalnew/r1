@@ -1,6 +1,6 @@
 <?php
 /* $content - массив контентов */
-function html($caption, $content) { ?>
+function html($caption, $content, $mode='file') { ?>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -21,9 +21,13 @@ function html($caption, $content) { ?>
     <td id="content">
     <?php
         echo "<h2>$caption</h2>";
-            foreach($content as $el) {
+        foreach($content as $el) {
             echo '<h3><a name="'.$el['href'].'">'.$el['title']."</a></h3> \n";
-            include $el['content'];
+            if ($mode=='file') {
+                include $el['content'];
+            } elseif($mode=='db') {
+                echo $el['content']; 
+            }
         } 
     ?>
     </td>
@@ -47,4 +51,23 @@ function getMenu($content) {
 function addContent(&$content, $title, $href) {
     $content[] = array('title'=>$title, 'href'=>$href, 'content'=>$href.'.html');
 }
+
+function addContentOfDB(&$content, $sectionid) {
+    if ($sectionid) {
+        @ $db = new mysqli('localhost', 'mysql','mysql','help');
+        if (!mysqli_connect_errno()) {
+            $query = "select * from topics where sectionid=$sectionid";
+            $result = $db->query($query);
+            $num_results = $result->num_rows;
+            for ($i=0; $i < $num_results; $i++) { 
+                $row = $result->fetch_assoc();
+                $content[] = array('title'=>$row['name'], 'href'=>'topic'.$row['topicid'],
+                     'content'=>$row['content']);
+            }
+            $result->close();
+            $db->close();
+        }
+    }
+}
+
 ?>

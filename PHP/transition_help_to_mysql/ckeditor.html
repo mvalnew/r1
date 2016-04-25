@@ -1,19 +1,71 @@
-<?php 
+<?php
+	$operation = trim($_POST['operation']);
 	$section = trim($_POST['section']);
 	$topic = trim($_POST['topic']);
+	$topicName = trim($_POST['topicName']);
+	$topic_content = trim($_POST['editor1']);
+	if ($operation == "Прочитать") {
 	if ($section && $topic) {
-		@ $db = new mysqli('localhost', 'mysql','mysql','help');
-		if (!mysqli_connect_errno()) {
-			$query = "select * from topics where topicid=$topic";
-			$result = $db->query($query);
-			$row = $result->fetch_assoc();
-			$topic_content = $row['content'];
+			@ $db = new mysqli('localhost', 'mysql','mysql','help');
+			if (!mysqli_connect_errno()) {
+				$query = "select * from topics where topicid=$topic";
+				$result = $db->query($query);
+				$row = $result->fetch_assoc();
+				$section = $row['sectionid'];
+				$topic = $row['topicid'];
+				$topicName = $row['name'];
+				$topic_content = $row['content'];
+				$result->close();
+				$db->close();
+			}
 		}
 	}
-
+	elseif ($operation == "Записать") {
+		if ($section && $topic) {
+			if (empty($topic)) {
+				$topic = NULL;
+			}
+			if (empty($section)) {
+				$section = NULL;
+			}
+			@ $db = new mysqli('localhost', 'mysql','mysql','help');
+			if (!mysqli_connect_errno()) {
+				$query = "insert into topics values ($topic, $section, '$topicName', '$topic_content')";
+				$result = $db->query($query);
+			}
+		}
+	}
+	elseif ($operation == "Обновить") {
+		if ($section && $topic) {
+			@ $db = new mysqli('localhost', 'mysql','mysql','help');
+			if (!mysqli_connect_errno()) {
+				$query = "update topics set sectionid=$section, name='$topicName', content='$topic_content' where topicid=$topic";
+				$result = $db->query($query);
+			}
+		}
+	}
 ?>
 <script src="/modules/ckeditor/ckeditor.js"></script>
 <form method="post">
+	<table cellpadding="1" style="height:35px; width:400px">
+		<tbody>
+			<tr>
+				<td>ID раздела</td>
+				<td><input name="section" size="10" type="text" value="<?php echo $section; ?>" /></td>
+				<td>ID статьи</td>
+				<td><input name="topic" size="10" type="text" value="<?php echo $topic; ?>" /></td>
+				<td>Заголовок</td>
+				<td><input name="topicName" size="25" type="text" value="<?php echo $topicName; ?>" /></td>
+			</tr>
+			<tr>
+				<td><input name="operation" type="submit" value="Прочитать" /></td>
+				<td></td>
+				<td style="text-align: center;"><input name="operation" type="submit" value="Записать" /></td>
+				<td></td>
+				<td><input name="operation" type="submit" value="Обновить" /></td>
+			</tr>
+		</tbody>
+	</table>
     <textarea name="editor1" id="editor1" rows="10" cols="80">
     	<?php echo $topic_content; ?>
     </textarea>
@@ -23,20 +75,4 @@
         CKEDITOR.replace( 'editor1' );
     </script>
 
-	<table cellpadding="1" style="height:95px; width:317px">
-		<tbody>
-			<tr>
-				<td>Раздел :</td>
-				<td><input name="section" size="25" type="text" /></td>
-			</tr>
-			<tr>
-				<td>Статья :</td>
-				<td><input name="topic" size="25" type="text" /></td>
-			</tr>
-			<tr>
-				<td><input name="get" type="button" value="Прочитать" /></td>
-				<td style="text-align: center;"><input name="submit" type="submit" value="Записать" /></td>
-			</tr>
-		</tbody>
-	</table>
 </form>
