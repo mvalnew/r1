@@ -70,4 +70,81 @@ function addContentOfDB(&$content, $sectionid) {
     }
 }
 
+//******************* 3-х уровневая структура *****************************************
+
+// 3-х уровневая структура раздел-подразделы-статьи
+// 1-й уровнь - параметр $sectionid 
+
+// меню для секции (страницы)
+function setMenu($sectionid) {
+    if ($sectionid) { // если есть sectionid
+        @ $db = new mysqli('localhost', 'mysql','mysql','help');
+        if (!mysqli_connect_errno()) { // если нет ошибок
+            // 1-й уровнь - параметр $sectionid 
+            // 2-й уровень - выбираем дочерние подразделы
+            $query = "select * from sections where parent=$sectionid";
+            $res = $db->query($query);
+            $num_results = $res->num_rows;
+            for ($i=0; $i < $num_results; $i++) { 
+                $row = $res->fetch_assoc();
+                //$result[] = array('id'=>$row['sectionid'], 'name'=>$row['name']);
+                echo "<li><a href='?subsection={$row['sectionid']}'>{$row['name']}</a>";
+            }
+            $res->close();
+            $db->close();
+        } // если нет ошибок
+    } // если есть sectionid
+}
+
+// Вывод тем одной секции (одна страница)
+function setTopics($subsectionid) {
+    if ($subsectionid) { // если есть sectionid
+        @ $db = new mysqli('localhost', 'mysql','mysql','help');
+        if (!mysqli_connect_errno()) { // если нет ошибок
+            $query =  "select  * from topics where sectionid=$subsectionid";
+            $result = $db->query($query);
+            $num_results = $result->num_rows;
+            if ($result) {
+                for ($i=0; $i < $num_results; $i++) { 
+                    $row = $result->fetch_assoc();
+                    echo "<h3>{$row['name']}</h3>";
+                    echo $row['content'];
+                }
+                $result->close();
+            }
+            $db->close();
+        } // если нет ошибок
+    } // если есть sectionid
+}
+
+// Вывод HTML для секции первого уровня и ее подсекций
+function setHTML($sectionid) { 
+    $caption = "111";
+    $subsectionid = $_GET['subsection'];
+    if (!$subsectionid) {
+        $subsectionid = 101;
+    }
 ?>
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title><?php echo $caption; ?></title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<table>
+  <tr>
+    <td id="menu">
+    <li><a href='/index.html'>В начало</a>
+    <h4>Содержание:</h4>
+    <?php setMenu($sectionid) ?>
+    </td>
+    <td id="content">
+    <?php setTopics($subsectionid); ?>
+    </td>
+  </tr>
+</table>
+</body>
+</html>
+<?php } ?>
