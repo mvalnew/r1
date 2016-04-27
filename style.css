@@ -1,4 +1,6 @@
-body, pre {font-family: Geneva, Arial, Helvetica, sans-serif; color: #333}
+body, pre {font-family: Geneva, Arial, Helvetica, sans-serif; color: #333;}
+body {margin: 15px;}
+h3 {color:#555}
 sup {font-size: x-small;}
 table {border-spacing: 0}
 table caption {font-weight: bold; font-size: large}
