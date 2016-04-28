@@ -30,7 +30,7 @@
 			}
 			@ $db = new mysqli('localhost', 'mysql','mysql','help');
 			if (!mysqli_connect_errno()) {
-				$query = "insert into topics values ($topic, $section, '$topicName', '$topic_content')";
+				$query = "insert into topics set topicid=$topic, sectionid=$section, name='$topicName', content='$topic_content'";
 				$result = $db->query($query);
 			}
 		}
