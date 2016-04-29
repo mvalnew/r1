@@ -125,7 +125,7 @@ function setTopics($subsectionid) {
             if ($result) {
                 for ($i=0; $i < $num_results; $i++) { 
                     $row = $result->fetch_assoc();
-                    echo "<h2 style='text-align: center;'><strong>{$row['name']}</strong></h2>";
+                    echo "<h2 id='topic_{$row['topicid']}' style='text-align: center;'><strong>{$row['name']}</strong></h2>";
                     echo $row['content'];
                 }
                 $result->close();
