@@ -136,10 +136,10 @@ function setTopics($subsectionid) {
 }
 
 // Вывод HTML для секции первого уровня и ее подсекций
-function setHTML($sectionid) { 
+function setHTML($sectionid, $startTopic) { 
     $subsectionid = $_GET['subsection'];
     if (!$subsectionid) {
-        $subsectionid = 101;
+        $subsectionid = $startTopic;
     }
     $caption = getName($sectionid)." : ".getName($subsectionid);
 ?>
