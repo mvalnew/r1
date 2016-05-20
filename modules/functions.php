@@ -136,12 +136,16 @@ function setTopics($subsectionid) {
 }
 
 // Вывод HTML для секции первого уровня и ее подсекций
-function setHTML($sectionid, $startTopic) { 
+function setHTML($sectionid, $startTopic, $scriptFile="") { 
     $subsectionid = $_GET['subsection'];
     if (!$subsectionid) {
         $subsectionid = $startTopic;
     }
     $caption = getName($sectionid)." : ".getName($subsectionid);
+    $script = "";
+    if ($scriptFile) {
+        $script = "<script src='$scriptFile'></script>";
+    }
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -149,6 +153,7 @@ function setHTML($sectionid, $startTopic) {
     <title><?php echo $caption; ?></title>
     <meta charset="utf-8">
     <link rel="stylesheet" href="/style.css">
+    <?php echo $script; ?>
 </head>
 <body>
 <h1 style="text-align: center;"><?php echo $caption; ?></h1>
