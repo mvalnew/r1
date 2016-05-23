@@ -6,7 +6,7 @@ onload = new function() {
         script.src = "script"+subsection+".js";
         head.appendChild(script);
     }
-}
+};
 function getUrlVars() {
     var vars = {};
     var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {

@@ -2,10 +2,12 @@
     $left = $_GET['left'];
     $top = $_GET['top'];
     
-    $systemid = 756;
+    $systemid = 0xff3;
     $mode = 'c';
-    $permission = 0755;
-    $size = 10;
+    $permission = 0777;
+    $size = 100;
     $shmid = shmop_open($systemid, $mode, $permission, $size);
-    shmod_write($shmid, $left, 0);
-?>
+    
+    shmop_write($shmid, $left, 0);
+    shmop_write($shmid, $top, 10);
+ ?>
