@@ -8,6 +8,6 @@
     $size = 100;
     $shmid = shmop_open($systemid, $mode, $permission, $size);
     
-    shmop_write($shmid, $left, 0);
-    shmop_write($shmid, $top, 10);
+    shmop_write($shmid, $left.'*', 0);
+    shmop_write($shmid, $top.'*', 10);
  ?>

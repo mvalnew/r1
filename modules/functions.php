@@ -54,7 +54,7 @@ function addContent(&$content, $title, $href) {
 
 function addContentOfDB(&$content, $sectionid) {
     if ($sectionid) {
-        @ $db = new mysqli('localhost', 'mysql','mysql','help');
+        $db = getDB();
         if (!mysqli_connect_errno()) {
             $query = "select * from topics where sectionid=$sectionid";
             $result = $db->query($query);
@@ -77,7 +77,7 @@ function addContentOfDB(&$content, $sectionid) {
 function getName($sectionid) {
     $name = "";
     if ($sectionid) { // если есть sectionid
-        @ $db = new mysqli('localhost', 'mysql','mysql','help');
+        $db = getDB();
         if (!mysqli_connect_errno()) { // если нет ошибок
             $query = "select * from sections where sectionid=$sectionid";
             $res = $db->query($query);
@@ -96,7 +96,7 @@ function getName($sectionid) {
 // меню для секции (страницы)
 function setMenu($sectionid) {
     if ($sectionid) { // если есть sectionid
-        @ $db = new mysqli('localhost', 'mysql','mysql','help');
+        $db = getDB();
         if (!mysqli_connect_errno()) { // если нет ошибок
             // 1-й уровнь - параметр $sectionid 
             // 2-й уровень - выбираем дочерние подразделы
@@ -114,10 +114,16 @@ function setMenu($sectionid) {
     } // если есть sectionid
 }
 
+function getDb() {
+        @ $db = new mysqli('localhost', 'mysql','mysql','help');
+        //@ $db = new mysqli('mysql.cba.pl', 'mv','liberty','mv_zzz_com_ua', 3306);
+        return $db;
+}
+
 // Вывод тем одной секции (одна страница)
 function setTopics($subsectionid) {
     if ($subsectionid) { // если есть sectionid
-        @ $db = new mysqli('localhost', 'mysql','mysql','help');
+        $db = getDB();
         if (!mysqli_connect_errno()) { // если нет ошибок
             $query =  "select  * from topics where sectionid=$subsectionid";
             $result = $db->query($query);

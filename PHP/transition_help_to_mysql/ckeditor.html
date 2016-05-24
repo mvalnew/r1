@@ -6,7 +6,7 @@
 	$topic_content = trim($_POST['editor1']);
 	if ($operation == "Прочитать") {
 	if ($section && $topic) {
-			@ $db = new mysqli('localhost', 'mysql','mysql','help');
+			$db = getDb();
 			if (!mysqli_connect_errno()) {
 				$query = "select * from topics where topicid=$topic";
 				$result = $db->query($query);

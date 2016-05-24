@@ -8,6 +8,8 @@ ball.ondragstart = function() {
 // при нажатии мыши - подготовимся к перемещению
 ball.onmousedown = function(e) {
         
+    var xhr = new  XMLHttpRequest();
+    xhr.onreadystatechange = onreadystatechange();
     // разместим в том же месте, но в абсолютных координатах
     ball.style.position = 'absolute';
     moveAt(e);
@@ -34,25 +36,26 @@ ball.onmousedown = function(e) {
         ball.style.top = top +'px';
     }
     
-    // отправка сообщения на сервер
+   // инициализация AJAX
+   function onreadystatechange() {
+        if (xhr.readyState != 4) return;
+        var mess = "";
+        if (xhr.status != 200) {
+            mess += xhr.status + ': ' + xhr.statusText;
+        } else {
+            mess += xhr.responseText;
+        }
+        if (mess) {
+            info(mess);
+        }
+   }
+   // отправка сообщения на сервер
     function send(left, top) {
-       // AJAX
-        var xhr = new  XMLHttpRequest();
-        xhr.onreadystatechange = function() {
-            if (xhr.readyState != 4) return;
-            var mess = "";
-            if (xhr.status != 200) {
-                mess += xhr.status + ': ' + xhr.statusText;
-            } else {
-                mess += xhr.responseText;
-            }
-            if (mess) {
-                info(mess);
-            }
-        };
+        xhr.abort();
         var params = '?left=' + left + '&top=' + top;
-        xhr.open('GET', 'http://help/addition/sharedmemory/on.php'+params, true);
-        xhr.send();
+        //xhr.open('GET', 'http://help/addition/sharedmemory/on.php'+params, true);
+        xhr.open('GET', 'on.php'+params, true);
+     xhr.send();
     }
     
     function info(m) {
